@@ -5,3 +5,10 @@ Functions
 Union
 Joins
 Nested Queries
+Wildcards
+Union
+On Delete
+Triggers
+Er Diagrams
+Designing An Er Diagram
+Er Diagram Mapping
