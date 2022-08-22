@@ -119,3 +119,63 @@ INSERT INTO works_with VALUES(105, 404, 33000);
 INSERT INTO works_with VALUES(107, 405, 26000);
 INSERT INTO works_with VALUES(102, 406, 15000);
 INSERT INTO works_with VALUES(105, 406, 130000);
+
+-- Find all employees ordered by salary
+SELECT *
+FROM employee
+ORDER BY salary;
+
+-- Find all employees ordered by sex then name
+SELECT *
+FROM employee
+ORDER BY sex, first_name;
+
+-- Find the first 5 employees in the table
+SELECT *
+FROM employee
+LIMIT 5;
+
+-- Find the 3rd highest salary
+SELECT *
+FROM ( SELECT * 
+	   FROM employee
+       ORDER BY salary DESC
+       LIMIT 3 ) x
+ORDER BY salary
+LIMIT 1;       
+
+-- Find out all the different genders
+SELECT DISTINCT sex
+FROM employee;
+
+-- 	find all employee's id's and names who were born after 1969
+SELECT emp_id,	concat(	first_name,' ',last_name) 
+FROM   employee
+WHERE 	birth_day >= 1970-01-01;
+
+-- Find all employees who are female & born after 1969 or make over 80K
+SELECT *
+FROM employee
+WHERE sex = 'F' 
+AND ( birth_day >= 1970-01-01  OR salary > 80000 );
+			
+-- Find all employees named Jim, Michael, Johnny or David
+SELECT * 
+FROM employee
+WHERE first_name IN ('jim','Michael', 'Johnny', 'David');
+
+-- Find how many males and females work in the company
+SELECT sex,COUNT(sex)
+FROM employee 
+GROUP BY sex;
+
+-- Find the total sales of each salesman
+SELECT emp_id,SUM(total_sales)
+FROM Works_With
+GROUP BY emp_id;
+
+-- Find the total amount of money spent by each client
+SELECT client_id,SUM(total_sales)
+FROM Works_With
+GROUP BY client_id;
+
