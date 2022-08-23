@@ -244,8 +244,8 @@ SELECT c.client_name
 FROM Client c
 WHERE c.client_id IN ( SELECT client_id 
                        FROM ( 
-							SELECT w.client_id, SUM(w.total_sales) s
-							FROM Works_With w
-							GROUP BY w.client_id
-							HAVING s >= 100000 ) X );
+				SELECT w.client_id, SUM(w.total_sales) s
+				FROM Works_With w
+				GROUP BY w.client_id
+				HAVING s >= 100000 ) X );
 		
