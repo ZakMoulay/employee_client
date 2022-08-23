@@ -179,3 +179,36 @@ SELECT client_id,SUM(total_sales)
 FROM Works_With
 GROUP BY client_id;
 
+-- Find clients who are an LLC
+SELECT *
+FROM Client 
+WHERE client_name LIKE '%LLC';
+
+-- Find a list of employee and branch names/ Must have same number of columns & data Type
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM
+Branch;
+
+INSERT INTO branch 
+VALUES(4, 'Buffalo', NULL, NULL);
+
+--  Find all branches and names of their managers
+SELECT 	e.emp_id, e.first_name, e.last_name, b.branch_name
+FROM employee e
+INNER JOIN Branch b
+ON e.emp_id = b.mgr_id;
+
+-- Find names of all employees who sold over 50,000
+SELECT 	first_name, last_name
+FROM Employee 
+WHERE emp_id IN (
+				SELECT emp_id 
+                FROM (
+				SELECT emp_id, SUM(total_sales) S
+				FROM Works_With 
+				GROUP BY emp_id
+                HAVING S >= 50000 ) X
+                );
