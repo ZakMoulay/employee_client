@@ -138,7 +138,7 @@ LIMIT 5;
 -- Find the 3rd highest salary
 SELECT *
 FROM ( SELECT * 
-	   FROM employee
+       FROM employee
        ORDER BY salary DESC
        LIMIT 3 ) x
 ORDER BY salary
@@ -236,7 +236,7 @@ WHERE c.branch_id = ( SELECT B.Branch_id
 SELECT e.first_name, e.last_name
 FROM employee e
 WHERE e.branch_id IN ( SELECT b.branch_id
-					   FROM Branch b
+		       FROM Branch b
                        WHERE b.branch_name = 'Scranton' );
 
 -- Find the names of all clients who have spent more than 100,000 dollars
