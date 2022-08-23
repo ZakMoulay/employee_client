@@ -226,9 +226,9 @@ WHERE c.branch_id = ( SELECT B.Branch_id
 
 SELECT c.client_id,c.client_name
 FROM Client c
-WHERE c.branch_id = ( SELECT B.Branch_id
+WHERE c.branch_id = ( SELECT b.Branch_id
                       FROM Branch b
-                      WHERE B.Branch_id = ( SELECT E.Branch_id
+                      WHERE b.Branch_id = ( SELECT e.Branch_id
 					     FROM Employee e
                                              WHERE e.first_name = 'Michael' AND e.last_name = 'Scott') );
 		
