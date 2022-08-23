@@ -232,5 +232,20 @@ WHERE c.branch_id = ( SELECT B.Branch_id
 					     FROM Employee e
                                              WHERE e.first_name = 'Michael' AND e.last_name = 'Scott') );
 		
-		
+-- Find the names of employees who work with clients handeled by the scranton branch
+SELECT e.first_name, e.last_name
+FROM employee e
+WHERE e.branch_id IN ( SELECT b.branch_id
+					   FROM Branch b
+                       WHERE b.branch_name = 'Scranton' );
+
+-- Find the names of all clients who have spent more than 100,000 dollars
+SELECT c.client_name
+FROM Client c
+WHERE c.client_id IN ( SELECT client_id 
+                       FROM ( 
+							SELECT w.client_id, SUM(w.total_sales) s
+							FROM Works_With w
+							GROUP BY w.client_id
+							HAVING s >= 100000 ) X );
 		
