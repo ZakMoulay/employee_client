@@ -205,12 +205,12 @@ ON e.emp_id = b.mgr_id;
 SELECT 	first_name, last_name
 FROM Employee 
 WHERE emp_id IN (
-				SELECT emp_id 
+		SELECT emp_id 
                 FROM (
-				SELECT emp_id, SUM(total_sales) S
-				FROM Works_With 
-				GROUP BY emp_id
-                HAVING S >= 50000 ) X
+		      SELECT emp_id, SUM(total_sales) S
+		      FROM Works_With 
+		      GROUP BY emp_id
+                      HAVING S >= 50000 ) X
                 );
 		
 -- Find all clients who are handeled by the barnch Michael Scott manages, aqssume you know Michael Scott ID              
@@ -220,7 +220,7 @@ FROM Client c
 WHERE c.branch_id = ( SELECT B.Branch_id
                       FROM Branch b
                       WHERE B.Branch_id = ( SELECT E.Branch_id
-											 FROM Employee e
+					     FROM Employee e
                                              WHERE emp_id = 102) );
  -- Find all clients who are handeled by the barnch Michael Scott manages, aqssume you don't know Michael Scott ID                        
 
@@ -229,7 +229,7 @@ FROM Client c
 WHERE c.branch_id = ( SELECT B.Branch_id
                       FROM Branch b
                       WHERE B.Branch_id = ( SELECT E.Branch_id
-											 FROM Employee e
+					     FROM Employee e
                                              WHERE e.first_name = 'Michael' AND e.last_name = 'Scott') );
 		
 		
